@@ -6,7 +6,8 @@ import (
 	"fmt"
 	"os"
 
-	unxor "unxorlib"
+	unxor "github.com/tomchop/unxor"
+	//unxor "unxorlib"
 )
 
 func parseArgs() (*string, *string, *string) {
