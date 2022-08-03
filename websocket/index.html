@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simple Websocket Connection</title>
+    </head>
+    <body>
+        <input id="input" type="text" />
+            <button onclick="send()">Send</button>
+            <pre id="output"></pre>
+        <script>
+            //getElementById -> input / output 가져오기
+            const input = document.getElementById("input");
+            const output = document.getElementById("output");
+            //websocket 등록
+            const socket = new WebSocket("ws://localhost:8080/echo");
+            socket.onopen = function () {
+                //open 됬으면 status connected 표시
+            output.innerHTML += "Status: Connected\n";
+            };
+            socket.onmessage = function (e) {
+                //innerHTML Server output 데이터들 표시
+            output.innerHTML += "Server: " + e.data + "\n";
+            };
+        function send() {
+        socket.send(input.value);
+        input.value = "";
+            }
+</script>
+</body>
+</html>
